@@ -12,7 +12,8 @@
       ></q-input>
       <q-input
         v-model="newUnit"
-        class="col"
+        class="col ingre-input"
+        @keyup.enter="addIngredients"
         square
         filled
         bg-color="white"
@@ -26,11 +27,12 @@
         filled
         bg-color="white"
         placeholder="Menge"
+        @keyup.enter="addIngredients"
         dense
       ></q-input>
-
       <q-btn @click="addIngredients" round dense flat icon="add"></q-btn>
     </div>
+
     <q-list class="bg-white" separator bordered>
       <q-item
         v-for="(ingredient, index) in ingredients"
@@ -76,10 +78,12 @@
 
 <script>
 export default {
-  data: () => {
-    newIngredient;
-    newUnit;
-    newAmount;
+  data() {
+    return {
+      newIngredient: "",
+      newUnit: "",
+      newAmount: ""
+    };
   },
   computed: {
     ingredients: {
@@ -130,5 +134,10 @@ export default {
 
 .no-ingredients {
   opacity: 0.5;
+}
+
+.ingre-input {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
